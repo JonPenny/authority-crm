@@ -1,8 +1,26 @@
 import Head from "next/head"
-import { Button } from "components/Button/Button"
+import { Button } from "components/Bits/Button/Button"
 import { LP_GRID_ITEMS } from "../lp-items"
+import { CustomTable } from "components/Bits/Table/CustomTable"
+import { GridRowsProp } from "@mui/x-data-grid/models/gridRows";
+import { GridColDef } from "@mui/x-data-grid/models/colDef";
 
 export default function Web() {
+
+  const rows: GridRowsProp = [
+    { id: 1, col1: 'Hello', col2: 'World' },
+    { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
+    { id: 3, col1: 'MUI', col2: 'is Amazing' },
+  ];
+
+const columns: GridColDef[] = [
+    { field: 'col1', headerName: 'Column 1', width: 150 },
+    { field: 'col2', headerName: 'Column 2', width: 150 },
+  ];
+  
+
+
+
   return (
     <>
       <Head>
@@ -27,6 +45,10 @@ export default function Web() {
               Experience rapid UI development, AI-powered code reviews, and an extensive suite of tools for a smooth and
               enjoyable development process.
             </p>
+            <CustomTable 
+            rows={rows}
+            columns={columns}/>
+            
             <Button href="https://github.com/Blazity/next-enterprise" className="mr-3">
               Get started
             </Button>

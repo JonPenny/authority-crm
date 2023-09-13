@@ -12,7 +12,7 @@ const meta: Meta<typeof Button> = {
   },
   argTypes: {
     intent: {
-      options: ["primary", "secondary"],
+      options: ["primary", "secondary", "tertiary"],
       control: { type: "select" },
     },
     size: {
