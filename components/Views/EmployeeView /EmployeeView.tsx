@@ -4,6 +4,8 @@ import { BaseView } from "../BaseView/BaseView"
 import { CustomerTable } from "components/Bits/Table/CustomerTable"
 import { JobTable } from "components/Bits/Table/JobsTable"
 
+import { EmployeeTable } from "components/Bits/Table/EmployeeTable"
+
 const button = cva(
   [
     "justify-center",
@@ -41,17 +43,16 @@ enum Direction {
     "primary", "secondary", "tertiary"
   }
 
-export interface dashViewProps {
+export interface employeeViewProps {
 //   underline?: boolean
    className: string
    intent:  "primary" |"secondary" | "tertiary"
 }
 
-export function DashView({ className, intent, ...props }: dashViewProps) {
+export function EmployeeView({ className, intent, ...props }: employeeViewProps) {
   return (
-      <BaseView title="Service Dashboard"> 
-        <CustomerTable/>
-        <JobTable/>
+      <BaseView title="Service Team"> 
+        <EmployeeTable/>
       </BaseView>
 
 

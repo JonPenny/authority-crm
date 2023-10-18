@@ -13,39 +13,48 @@ const customTable = cva(
     // "text-center",
     // "transition-colors",
     "delay-50",
-    "min-w-[900px]",
-    "w-screen/2"
   ],
   {
     variants: {
       intent: {
-        primary: ["bg-background", "text-black", "hover:enabled:bg-red-700"],
-        secondary: ["bg-white", "text-color-blue-400", "hover:enabled:bg-blue-400", "hover:enabled:text-white"],
+        primary: ["text-black", "hover:enabled:bg-red-700"],
+        secondary: ["text-color-blue-400", "hover:enabled:bg-blue-400", "hover:enabled:text-white"],
       },
       size: {
-        // sm: ["text-sm", "py-1.5", "px-4"],
-        // lg: ["text-lg", "py-2.5", "px-6"],
+        full: ["text-lg", "py-2.5", "px-6", "w-full", "h-1/2"],
+        small: ["text-lg", "py-2.5", "px-6",  "min-w-[900px]", "w-screen/2"],
       },
 
     },
     defaultVariants: {
       intent: "primary",
-      // size: "lg",
+      size: "full",
     },
   }
 )
 
 
-export interface TableProps extends React.ButtonHTMLAttributes<HTMLAnchorElement>, VariantProps<typeof customTable> {
-  columns: GridColDef[],
-  rows: GridRowsProp
+export interface TableProps  {
+  className?: String,
+  size?: "small" | "full"
+  columns?: GridColDef[],
+  rows?: GridRowsProp
+  intent?: "primary" | "secondary"
 }
 
 export function CustomTable({ className, intent, size, ...props }: TableProps) {
+  if(!props.columns){
+    props.columns = []
+  }
+  if(!props.rows){
+    props.rows = []
+  } 
+
   return (
     <a className={twMerge(customTable({ intent, size, className, }))} {...props}>
       <DataGrid
-        className="w-full"
+        rowHeight={30}
+        className="w-full bg-white dark:text-white dark:bg-stone-800 rounded  border border-slate-300 dark:border-slate-900"
         columns={props.columns}
         rows={props.rows}
         initialState={{
@@ -54,7 +63,6 @@ export function CustomTable({ className, intent, size, ...props }: TableProps) {
           },
         }}
       />
-      {props.children}
     </a>
   )
 }

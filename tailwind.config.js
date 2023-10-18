@@ -24,6 +24,13 @@ module.exports = {
         'accent': jsThemes.scheme.accentColor,    
         'background': jsThemes.scheme.background,     
         'neutral': jsThemes.scheme.neutral,   
+
+        'darkPrimary': jsThemes.darkScheme.primary,        
+        'darkSecondary': jsThemes.darkScheme.secondary,     
+        'darkAccent': jsThemes.darkScheme.accentColor,    
+        'darkBackground': jsThemes.darkScheme.background,     
+        'darkNeutral': jsThemes.darkScheme.neutral,   
+
         // primary: {
         //   50: "#eff6ff",
         //   100: "#dbeafe",

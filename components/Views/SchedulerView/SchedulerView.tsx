@@ -1,10 +1,14 @@
 import { cva, type VariantProps } from "class-variance-authority"
+import { CustomTable } from "components/Bits/Table/CustomTable"
 import { twMerge } from "tailwind-merge"
 import { BaseView } from "../BaseView/BaseView"
-import { CustomerTable } from "components/Bits/Table/CustomerTable"
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { JobTable } from "components/Bits/Table/JobsTable"
 
-const button = cva(
+
+const scheduler = cva(
   [
     "justify-center",
     "inline-flex",
@@ -19,8 +23,8 @@ const button = cva(
   {
     variants: {
       intent: {
-        primary: ["bg-primary", "font-semibold", "text-white"],
-        secondary: ["bg-accent", "font-semibold", "text-white"],
+        primary: [ "font-semibold", "text-white"],
+        secondary: [, "font-semibold", "text-white"],
         tertiary: ["bg-transparent", "border-primary", "text-primary", "hover:bg-primary", "hover:text-white", "hover:enabled:text-white"],
       },
       size: {
@@ -41,17 +45,32 @@ enum Direction {
     "primary", "secondary", "tertiary"
   }
 
-export interface dashViewProps {
+export interface schedulerViewProps {
 //   underline?: boolean
    className: string
    intent:  "primary" |"secondary" | "tertiary"
 }
 
-export function DashView({ className, intent, ...props }: dashViewProps) {
+export function SchedulerView({ className, intent, ...props }: schedulerViewProps) {
+  const localizer = momentLocalizer(moment)
   return (
-      <BaseView title="Service Dashboard"> 
-        <CustomerTable/>
-        <JobTable/>
+      <BaseView title="Service Scheduling"> 
+        <div className="pb-10"> 
+          <div > 
+            <JobTable intent="secondary"/>
+          </div>
+          <div className="bg-white border border-slate-300 rounded p-2" >
+            <Calendar
+            className=""
+              localizer={localizer}
+              events={[]}
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: 500 }}
+            />
+          </div>
+       
+        </div>
       </BaseView>
 
 
